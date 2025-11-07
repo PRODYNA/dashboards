@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 0,
+  "id": 17,
   "links": [],
   "panels": [
     {
@@ -93,6 +93,228 @@
         }
       ],
       "title": "Top routes",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 3,
+        "x": 8,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "displayMode": "lcd",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "sum by(http_response_status_code) (increase(http_server_request_duration_seconds_count{k8s_namespace_name=~\"$namespace\", service_name=~\"$service\", http_route=~\"$route\"}[$__range]))",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Status codes",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 3,
+        "x": 11,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "displayMode": "lcd",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "sum by(http_request_method) (increase(http_server_request_duration_seconds_count{k8s_namespace_name=~\"$namespace\", service_name=~\"$service\", http_route=~\"$route\"}[$__range]))",
+          "instant": true,
+          "legendFormat": "{{http_request_method}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Request methods",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 3,
+        "x": 14,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "displayMode": "lcd",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "sum by(url_scheme) (increase(http_server_request_duration_seconds_count{k8s_namespace_name=~\"$namespace\", service_name=~\"$service\", http_route=~\"$route\"}[$__range]))",
+          "instant": true,
+          "legendFormat": "{{http_request_method}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "URL Scheme",
       "type": "bargauge"
     },
     {
@@ -191,7 +413,7 @@
           "refId": "A"
         }
       ],
-      "title": "Request duration",
+      "title": "Time series",
       "type": "timeseries"
     },
     {
@@ -292,7 +514,7 @@
           "refId": "A"
         }
       ],
-      "title": "Request count",
+      "title": "Time series",
       "type": "timeseries"
     }
   ],
@@ -308,10 +530,10 @@
       {
         "current": {
           "text": [
-            "All"
+            "backend"
           ],
           "value": [
-            "$__all"
+            "backend"
           ]
         },
         "definition": "label_values(k8s_namespace_name)",
@@ -332,12 +554,8 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "text": "All",
+          "value": "$__all"
         },
         "definition": "label_values(http_server_request_duration_seconds_sum{k8s_namespace_name=~\"$namespace\"},service_name)",
         "description": "The name of the services in the selected namespaces",
@@ -357,12 +575,8 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "text": "All",
+          "value": "$__all"
         },
         "definition": "label_values(http_server_request_duration_seconds_count{k8s_namespace_name=~\"$namespace\", service_name=~\"$service\"},http_route)",
         "includeAll": true,
@@ -382,12 +596,12 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "OpenTelemetry HTTP Server",
   "uid": "datj4v2",
-  "version": 5
+  "version": 7
 }
